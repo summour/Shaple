@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#fafafa" />
+  <title>Shaple</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@500;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <main class="app" aria-label="Shaple app">
+    <section class="view is-active" data-view="home">
+      <header class="hero">
+        <div>
+          <p class="brand">Shaple</p>
+          <h1>Home</h1>
+        </div>
+        <div class="hero-actions">
+          <button data-view-button="stats" type="button">Stats</button>
+          <button data-view-button="profile" type="button" aria-label="Menu">☰</button>
+        </div>
+      </header>
+
+      <section class="date-row" aria-label="Week dates">
+        <button type="button"><b>11</b><span>Mon</span></button>
+        <button type="button"><b>12</b><span>Tue</span></button>
+        <button class="is-selected" type="button"><b>13</b><span>Wed</span></button>
+        <button type="button"><b>14</b><span>Thu</span></button>
+        <button type="button"><b>15</b><span>Fri</span></button>
+        <button type="button"><b>16</b><span>Sat</span></button>
+      </section>
+
+      <section class="summary-grid">
+        <article><span>Weight</span><strong><em data-weight>—</em> kg</strong></article>
+        <article><span>Height</span><strong><em data-height>—</em> cm</strong></article>
+        <article><span>Latest Entry</span><strong data-latest-date>—</strong></article>
+      </section>
+
+      <section class="section-title">
+        <h2>Key Measurements</h2>
+        <button data-view-button="body" type="button">Edit</button>
+      </section>
+
+      <section class="metric-grid" aria-label="Key measurements">
+        <article><span>Neck</span><strong data-metric="neck">—</strong><small>cm</small></article>
+        <article><span>Bust</span><strong data-metric="bust">—</strong><small>cm</small></article>
+        <article><span>Waist</span><strong data-metric="waist">—</strong><small>cm</small></article>
+        <article><span>Belly</span><strong data-metric="belly">—</strong><small>cm</small></article>
+        <article><span>Hips</span><strong data-metric="hips">—</strong><small>cm</small></article>
+        <article><span>Thigh</span><strong data-metric="thigh">—</strong><small>cm</small></article>
+        <article><span>Calf</span><strong data-metric="calf">—</strong><small>cm</small></article>
+      </section>
+
+      <section class="progress-card">
+        <div><h2>Goal Progress</h2><p data-goal-title>Lose 5 kg</p></div>
+        <strong data-goal-percent>0%</strong>
+        <div class="progress-track"><span data-goal-bar></span></div>
+        <small data-goal-left>Save entries to track progress</small>
+      </section>
+
+      <section class="body-preview card-link" data-view-button="body" role="button" tabindex="0">
+        <div><h2>Body Map Preview</h2><p>Tap to view every measurement</p></div>
+        <div class="mini-body" aria-hidden="true"><span></span></div>
+        <button type="button">View</button>
+      </section>
+    </section>
+
+    <section class="view" data-view="add">
+      <header class="topbar"><button data-view-button="home" type="button">‹</button><h1>Add Entry</h1><button data-copy-last type="button">Copy</button></header>
+      <form data-entry-form class="entry-form">
+        <label>Date <input name="date" type="date" required /></label>
+        <label>Weight <input name="weight" type="number" step="0.1" inputmode="decimal" required /> kg</label>
+        <label>Height <input name="height" type="number" step="0.1" inputmode="decimal" /> cm</label>
+        <label>Neck <input name="neck" type="number" step="0.1" inputmode="decimal" /> cm</label>
+        <label>Bust <input name="bust" type="number" step="0.1" inputmode="decimal" /> cm</label>
+        <label>Waist <input name="waist" type="number" step="0.1" inputmode="decimal" /> cm</label>
+        <label>Belly <input name="belly" type="number" step="0.1" inputmode="decimal" /> cm</label>
+        <label>Hips <input name="hips" type="number" step="0.1" inputmode="decimal" /> cm</label>
+        <label>Thigh <input name="thigh" type="number" step="0.1" inputmode="decimal" /> cm</label>
+        <label>Calf <input name="calf" type="number" step="0.1" inputmode="decimal" /> cm</label>
+        <label class="textarea-label">Note <textarea name="note" placeholder="How are you feeling?"></textarea></label>
+        <button class="primary" type="submit">Save Entry</button>
+      </form>
+    </section>
+
+    <section class="view" data-view="body">
+      <header class="topbar"><button data-view-button="home" type="button">‹</button><h1>Body Map</h1><button data-view-button="add" type="button">Edit</button></header>
+      <section class="body-map-screen">
+        <div class="body-drawing" aria-hidden="true">
+          <span class="head"></span><span class="torso"></span><span class="arm left"></span><span class="arm right"></span><span class="leg left"></span><span class="leg right"></span>
+        </div>
+        <div class="callouts">
+          <article style="--y:8%"><span>Neck</span><b data-metric="neck">—</b></article>
+          <article style="--y:22%"><span>Bust</span><b data-metric="bust">—</b></article>
+          <article style="--y:37%"><span>Waist</span><b data-metric="waist">—</b></article>
+          <article style="--y:49%"><span>Belly</span><b data-metric="belly">—</b></article>
+          <article style="--y:61%"><span>Hips</span><b data-metric="hips">—</b></article>
+          <article style="--y:75%"><span>Thigh</span><b data-metric="thigh">—</b></article>
+          <article style="--y:88%"><span>Calf</span><b data-metric="calf">—</b></article>
+        </div>
+      </section>
+      <button class="secondary wide" data-view-button="add" type="button">Update Measurements</button>
+    </section>
+
+    <section class="view" data-view="stats">
+      <header class="topbar"><button data-view-button="home" type="button">‹</button><h1>Stats</h1><button data-export type="button">Export</button></header>
+      <div class="chips"><button>7D</button><button class="is-selected">30D</button><button>3M</button><button>1Y</button><button>All</button></div>
+      <section class="chart-card"><div><h2>Weight Trend</h2><strong data-weight-change>—</strong></div><svg viewBox="0 0 320 150"><path class="grid" d="M15 35H305M15 75H305M15 115H305"/><path class="chart-line green-line" data-weight-line d=""/><g data-weight-points></g></svg></section>
+      <section class="chart-card"><div><h2>Waist Trend</h2><strong data-waist-change>—</strong></div><svg viewBox="0 0 320 150"><path class="grid" d="M15 35H305M15 75H305M15 115H305"/><path class="chart-line blue-line" data-waist-line d=""/><g data-waist-points></g></svg></section>
+      <section class="month-card"><h2>This Month</h2><p>Weight Change <b data-month-weight>—</b></p><p>Waist Change <b data-month-waist>—</b></p><p>Entries Logged <b data-month-entries>0</b></p></section>
+    </section>
+
+    <section class="view" data-view="history">
+      <header class="topbar"><button data-view-button="home" type="button">‹</button><h1>History</h1><button data-export type="button">Export</button></header>
+      <section class="history-list" data-history-list></section>
+    </section>
+
+    <section class="view" data-view="profile">
+      <header class="topbar"><button data-view-button="home" type="button">‹</button><h1>Profile</h1><button data-fill-demo type="button">Demo</button></header>
+      <section class="profile-card"><div class="avatar">S</div><div><h2>Journey</h2><p>Keep growing every day</p></div></section>
+      <form class="settings-form" data-settings-form>
+        <label>Goal label <input name="goalLabel" /></label>
+        <label>Start weight <input name="startWeight" type="number" step="0.1" /> kg</label>
+        <label>Target weight <input name="targetWeight" type="number" step="0.1" /> kg</label>
+        <button class="primary" type="submit">Save Settings</button>
+      </form>
+      <button class="secondary wide" data-export type="button">Export Data</button>
+      <button class="danger wide" data-clear type="button">Delete Data</button>
+    </section>
+
+    <nav class="dock" aria-label="Primary navigation">
+      <button class="is-active" data-nav="home" data-view-button="home" type="button" aria-label="Home">⌂</button>
+      <button data-nav="add" data-view-button="add" type="button" aria-label="Add">＋</button>
+      <button data-nav="body" data-view-button="body" type="button" aria-label="Body map">▣</button>
+      <button data-nav="stats" data-view-button="stats" type="button" aria-label="Stats">◷</button>
+      <button data-nav="profile" data-view-button="profile" type="button" aria-label="More">☻</button>
+    </nav>
+  </main>
+</body>
+</html>
