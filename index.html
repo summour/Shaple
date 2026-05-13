@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#f7f7f8" />
+  <title>Shaple</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <main class="app-shell">
+    <section class="phone-screen" aria-label="Shaple home dashboard">
+      <header class="status-bar" aria-hidden="true">
+        <span>18:41</span>
+        <span class="dynamic-island"></span>
+        <span class="status-icons">⌁ ▱</span>
+      </header>
+
+      <section class="page-header">
+        <div>
+          <p class="eyebrow">Body Tracker</p>
+          <h1>Shaple</h1>
+          <p class="subtitle">Track your shape & progress</p>
+        </div>
+        <button class="icon-button" type="button" aria-label="Open settings">⚙</button>
+      </section>
+
+      <section class="summary-card" aria-label="Latest summary">
+        <article>
+          <span class="summary-icon">⌁</span>
+          <small>Current Weight</small>
+          <strong><span data-current-weight>60.0</span> kg</strong>
+        </article>
+        <article>
+          <span class="summary-icon">↕</span>
+          <small>Height</small>
+          <strong><span data-height>157</span> cm</strong>
+        </article>
+        <article>
+          <span class="summary-icon">◴</span>
+          <small>Latest Entry</small>
+          <strong data-latest-date>24 Jan 2026</strong>
+        </article>
+      </section>
+
+      <section class="section-heading">
+        <h2>Measurements Overview</h2>
+        <button class="pill-button" type="button">View History</button>
+      </section>
+
+      <section class="measurement-grid" aria-label="Measurement overview">
+        <article class="measurement-card">
+          <div class="card-icon green">⌁</div>
+          <span>Waist</span>
+          <strong><span data-measurement="waist">69</span> cm</strong>
+          <small class="is-good" data-change="waist">-1.0 cm</small>
+        </article>
+        <article class="measurement-card">
+          <div class="card-icon orange">⌇</div>
+          <span>Belly</span>
+          <strong><span data-measurement="belly">72</span> cm</strong>
+          <small class="is-good" data-change="belly">-0.5 cm</small>
+        </article>
+        <article class="measurement-card">
+          <div class="card-icon purple">♢</div>
+          <span>Hips</span>
+          <strong><span data-measurement="hips">92</span> cm</strong>
+          <small data-change="hips">— 0 cm</small>
+        </article>
+        <article class="measurement-card">
+          <div class="card-icon blue">⌞</div>
+          <span>Thigh</span>
+          <strong><span data-measurement="thigh">50</span> cm</strong>
+          <small class="is-good" data-change="thigh">-0.5 cm</small>
+        </article>
+        <article class="measurement-card">
+          <div class="card-icon teal">⌟</div>
+          <span>Calf</span>
+          <strong><span data-measurement="calf">36</span> cm</strong>
+          <small data-change="calf">— 0 cm</small>
+        </article>
+      </section>
+
+      <section class="section-heading body-heading">
+        <h2>Body Map</h2>
+        <button class="pill-button" type="button">Edit</button>
+      </section>
+
+      <section class="body-map-card" aria-label="Body map preview">
+        <div class="body-labels left">
+          <p><b>Neck</b><span><span data-measurement="neck">31.5</span> cm</span></p>
+          <p><b>Bust</b><span><span data-measurement="bust">92</span> cm</span></p>
+          <p><b>Waist</b><span><span data-measurement="waist">69</span> cm</span></p>
+          <p><b>Hips</b><span><span data-measurement="hips">92</span> cm</span></p>
+        </div>
+        <div class="body-figure" aria-hidden="true">
+          <span class="head"></span>
+          <span class="neck-line"></span>
+          <span class="torso"></span>
+          <span class="arm left-arm"></span>
+          <span class="arm right-arm"></span>
+          <span class="leg left-leg"></span>
+          <span class="leg right-leg"></span>
+          <i class="point point-neck"></i>
+          <i class="point point-bust"></i>
+          <i class="point point-waist"></i>
+          <i class="point point-hips"></i>
+          <i class="point point-thigh"></i>
+          <i class="point point-calf"></i>
+        </div>
+        <div class="body-labels right">
+          <p><b>Belly</b><span><span data-measurement="belly">72</span> cm</span></p>
+          <p><b>Thigh</b><span><span data-measurement="thigh">50</span> cm</span></p>
+          <p><b>Calf</b><span><span data-measurement="calf">36</span> cm</span></p>
+        </div>
+      </section>
+
+      <section class="bottom-cards">
+        <article class="mini-card">
+          <div class="mini-icon green">◎</div>
+          <div>
+            <small>Goal</small>
+            <strong>Hourglass</strong>
+            <span>Focus on balanced curves</span>
+          </div>
+        </article>
+        <article class="mini-card">
+          <div class="mini-icon blue">◴</div>
+          <div>
+            <small>Reminder</small>
+            <strong>Next measurement</strong>
+            <span>in <b data-reminder-days>3 days</b></span>
+          </div>
+        </article>
+      </section>
+
+      <nav class="ios-dock" aria-label="Primary navigation">
+        <button class="active" type="button" aria-label="Home">⌂</button>
+        <button type="button" aria-label="Body map">♁</button>
+        <button class="dock-add" type="button" aria-label="Add entry">＋</button>
+        <button type="button" aria-label="Stats">♡</button>
+        <button type="button" aria-label="Profile">◎</button>
+      </nav>
+    </section>
+  </main>
+</body>
+</html>
