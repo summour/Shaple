@@ -106,42 +106,39 @@ function getPreviousEntry(latestEntry) {
   return getSortedEntries().find((entry) => entry.id !== latestEntry.id) ?? null;
 }
 
-function getChange(latestEntry, previousEntry, key) {
-  if (!latestEntry || !previousEntry) {
-    return null;
-  }
+function getEntryValue(entry, key) {
+  return entry?.[key] ?? entry?.measurements?.[key] ?? null;
+}
 
-  const latestValue = latestEntry[key] ?? latestEntry.measurements?.[key];
-  const previousValue = previousEntry[key] ?? previousEntry.measurements?.[key];
+function getChange(latestEntry, previousEntry, key) {
+  const latestValue = getEntryValue(latestEntry, key);
+  const previousValue = getEntryValue(previousEntry, key);
 
   if (latestValue === null || previousValue === null) {
-    return null;
-  }
-
-  if (latestValue === undefined || previousValue === undefined) {
     return null;
   }
 
   return Number(latestValue) - Number(previousValue);
 }
 
-function formatChange(value) {
-  if (value === null) {
+function formatChange(value, unit = "cm") {
+  if (value === null || value === undefined) {
     return "—";
   }
 
   if (value === 0) {
-    return "— 0 cm";
+    return `— 0 ${unit}`;
   }
 
   const prefix = value > 0 ? "+" : "";
+  const rounded = value.toFixed(1).replace(/\.0$/, "");
 
-  return `${prefix}${value.toFixed(1).replace(/\.0$/, "")} cm`;
+  return `${prefix}${rounded} ${unit}`;
 }
 
-function renderChange(selector, value) {
+function renderChange(selector, value, unit = "cm") {
   qsa(selector).forEach((element) => {
-    element.textContent = formatChange(value);
+    element.textContent = formatChange(value, unit);
     element.classList.toggle("is-good", value !== null && value < 0);
     element.classList.toggle("is-bad", value !== null && value > 0);
   });
@@ -167,10 +164,13 @@ function renderHome() {
   const latestEntry = getLatestEntry();
 
   setText("[data-goal-label]", state.settings.goalLabel);
+  setText("[data-goal-weight]", formatNumber(state.settings.goalWeight, 1));
+  setText("[data-goal-waist]", formatNumber(state.settings.goalWaist, 1));
 
   if (!latestEntry) {
     renderEmptyHome();
     renderHistory();
+    renderStats();
     return;
   }
 
@@ -191,6 +191,19 @@ function renderHome() {
   });
 
   renderHistory();
+  renderStats();
+}
+
+function setView(viewName) {
+  qsa("[data-view]").forEach((view) => {
+    view.classList.toggle("is-active", view.dataset.view === viewName);
+  });
+
+  qsa("[data-nav]").forEach((button) => {
+    button.classList.toggle("active", button.dataset.nav === viewName);
+  });
+
+  qs(".screen")?.scrollTo({ top: 0, behavior: "instant" });
 }
 
 function openSheet(selector) {
@@ -235,10 +248,6 @@ function fillFormFromEntry(entry) {
   form.note.value = entry.note ?? "";
 
   MEASUREMENT_KEYS.forEach((key) => {
-    if (!form.elements[key]) {
-      return;
-    }
-
     form.elements[key].value = entry.measurements[key] ?? "";
   });
 }
@@ -311,6 +320,92 @@ function renderHistory() {
   }).join("");
 }
 
+function getMonthlyEntries() {
+  const latestEntry = getLatestEntry();
+
+  if (!latestEntry) {
+    return [];
+  }
+
+  const month = latestEntry.date.slice(0, 7);
+
+  return getSortedEntries()
+    .filter((entry) => entry.date.startsWith(month))
+    .reverse();
+}
+
+function getRangeChange(entries, key) {
+  if (entries.length < 2) {
+    return null;
+  }
+
+  return getEntryValue(entries.at(-1), key) - getEntryValue(entries[0], key);
+}
+
+function renderStats() {
+  const entries = getMonthlyEntries();
+  const latestEntry = getLatestEntry();
+  const changes = ["weight", "waist", "belly", "hips"].map((key) => ({
+    key,
+    value: getRangeChange(entries, key),
+    unit: key === "weight" ? "kg" : "cm"
+  }));
+  const bestChange = changes
+    .filter((item) => item.value !== null && item.value < 0)
+    .sort((a, b) => a.value - b.value)[0];
+
+  setText("[data-stat-entries]", entries.length);
+  setText("[data-stat-best]", bestChange ? `${labelFromKey(bestChange.key)} ${formatChange(bestChange.value, bestChange.unit)}` : "—");
+  setText("[data-stat-average]", entries.length > 1 ? "Good" : "—");
+
+  changes.forEach((item) => {
+    renderChange(`[data-stat-change="${item.key}"]`, item.value, item.unit);
+  });
+
+  renderWaistChart(entries);
+
+  if (!latestEntry) {
+    setText("[data-chart-label]", "—");
+  }
+}
+
+function labelFromKey(key) {
+  return key.charAt(0).toUpperCase() + key.slice(1);
+}
+
+function renderWaistChart(entries) {
+  const line = qs("[data-waist-line]");
+  const points = qs("[data-waist-points]");
+  const validEntries = entries.filter((entry) => entry.measurements.waist !== null);
+
+  if (!line || !points) {
+    return;
+  }
+
+  if (validEntries.length === 0) {
+    line.setAttribute("d", "");
+    points.innerHTML = "";
+    setText("[data-chart-label]", "No waist data");
+    return;
+  }
+
+  const values = validEntries.map((entry) => entry.measurements.waist);
+  const min = Math.min(...values);
+  const max = Math.max(...values);
+  const range = Math.max(max - min, 1);
+  const xStep = validEntries.length > 1 ? 280 / (validEntries.length - 1) : 0;
+  const coordinates = validEntries.map((entry, index) => {
+    const x = 20 + xStep * index;
+    const y = 132 - ((entry.measurements.waist - min) / range) * 96;
+
+    return { x, y };
+  });
+
+  line.setAttribute("d", coordinates.map((point, index) => `${index === 0 ? "M" : "L"}${point.x} ${point.y}`).join(" "));
+  points.innerHTML = coordinates.map((point) => `<circle cx="${point.x}" cy="${point.y}" r="5" />`).join("");
+  setText("[data-chart-label]", validEntries.length > 1 ? formatChange(values.at(-1) - values[0]) : "First point");
+}
+
 function exportJson() {
   const blob = new Blob([JSON.stringify(state, null, 2)], {
     type: "application/json"
@@ -336,15 +431,15 @@ function fillSettingsForm() {
 }
 
 function bindEvents() {
+  qsa("[data-set-view]").forEach((button) => {
+    button.addEventListener("click", () => setView(button.dataset.setView));
+  });
+
   qsa("[data-open-entry]").forEach((button) => {
     button.addEventListener("click", () => {
       setDefaultEntryDate();
       openSheet("[data-entry-sheet]");
     });
-  });
-
-  qsa("[data-open-history]").forEach((button) => {
-    button.addEventListener("click", () => openSheet("[data-history-sheet]"));
   });
 
   qsa("[data-open-settings]").forEach((button) => {
@@ -369,7 +464,9 @@ function bindEvents() {
     closeSheets();
   });
 
-  qs("[data-export-json]")?.addEventListener("click", exportJson);
+  qsa("[data-export-json]").forEach((button) => {
+    button.addEventListener("click", exportJson);
+  });
 
   qs("[data-clear-data]")?.addEventListener("click", () => {
     state.entries = [];
