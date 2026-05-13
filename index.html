@@ -1,1 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#f7f7f8" />
+  <title>Shaple UI Board</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="shell" aria-label="Shaple UI board">
+    <section class="hero panel" aria-labelledby="app-title">
+      <div>
+        <p class="eyebrow">UI Board · Shaple</p>
+        <h1 id="app-title">Body measurement tracker</h1>
+        <p class="hero-copy">Clean iOS-style screens for tracking weight, body measurements, monthly stats, goals, reminders, and JSON backup.</p>
+      </div>
+      <div class="hero-card" aria-label="Core navigation"><span>Home</span><span>Body</span><strong>+</strong><span>Stats</span><span>Profile</span></div>
+    </section>
 
+    <section class="board-grid" aria-label="Mobile screens">
+      <article class="phone" aria-labelledby="home-title">
+        <div class="status-bar"><span>18:41</span><span class="island"></span><span>▱</span></div>
+        <header class="app-header"><div><h2 id="home-title">Shaple</h2><p>Track your shape & progress</p></div><button class="icon-button">⚙</button></header>
+        <section class="summary-card"><div><small>Weight</small><strong>60.0</strong><span>kg</span></div><div><small>Height</small><strong>157</strong><span>cm</span></div><div><small>Latest</small><strong>24</strong><span>Jan</span></div></section>
+        <div class="section-row"><h3>Measurements</h3><button class="pill-button">History ›</button></div>
+        <section class="metric-strip"><div class="metric-card"><span>Waist</span><strong>69</strong><small class="good">-1.0 cm</small></div><div class="metric-card"><span>Belly</span><strong>72</strong><small class="good">-0.5 cm</small></div><div class="metric-card"><span>Hips</span><strong>92</strong><small>— 0 cm</small></div><div class="metric-card"><span>Thigh</span><strong>50</strong><small class="good">-0.5 cm</small></div></section>
+        <div class="section-row"><h3>Body Map</h3><button class="pill-button">Edit ✎</button></div>
+        <section class="body-card compact-map"><div class="body-labels left"><span>Neck <b>31</b></span><span>Bust <b>83</b></span><span>Waist <b>69</b></span><span>Hips <b>92</b></span></div><div class="body-figure"><span class="head"></span><span class="neck"></span><span class="torso"></span><span class="arm left-arm"></span><span class="arm right-arm"></span><span class="leg left-leg"></span><span class="leg right-leg"></span></div><div class="body-labels right"><span>Belly <b>72</b> ›</span><span>Thigh <b>50</b> ›</span><span>Calf <b>36</b> ›</span></div></section>
+        <section class="split-cards"><div class="mini-card"><span>Goal</span><strong>Hourglass</strong><small>Balanced curves</small></div><div class="mini-card"><span>Reminder</span><strong>3 days</strong><small>Next entry</small></div></section>
+        <nav class="dock"><button class="active">⌂</button><button>♁</button><button class="add">＋</button><button>♡</button><button>◎</button></nav>
+      </article>
+
+      <article class="phone" aria-labelledby="entry-title">
+        <div class="status-bar"><span>18:41</span><span class="island"></span><span>▱</span></div>
+        <header class="app-header tight"><button class="icon-button">‹</button><div><h2 id="entry-title">New Entry</h2><p>24 Jan 2026</p></div><button class="text-button">Save</button></header>
+        <button class="wide-action">Copy last entry</button>
+        <section class="form-card"><label>Weight <input value="60.0" /> <span>kg</span></label><label>Neck <input value="31.5" /> <span>cm</span></label><label>Shoulder <input value="36" /> <span>cm</span></label><label>Bust <input value="92" /> <span>cm</span></label><label>Underbust <input value="76" /> <span>cm</span></label><label>Upper Arm <input value="29" /> <span>cm</span></label><label>Waist <input value="69" /> <span>cm</span></label><label>Belly <input value="72" /> <span>cm</span></label><label>Upper Hip <input value="89" /> <span>cm</span></label><label>Hips <input value="92" /> <span>cm</span></label><label>Thigh <input value="50" /> <span>cm</span></label><label>Calf <input value="36" /> <span>cm</span></label></section>
+        <section class="note-card"><span>Note</span><p>go to hourglass!</p></section><button class="primary-button">Save measurement</button>
+        <nav class="dock"><button>⌂</button><button>♁</button><button class="add active">＋</button><button>♡</button><button>◎</button></nav>
+      </article>
+
+      <article class="phone" aria-labelledby="stats-title">
+        <div class="status-bar"><span>18:41</span><span class="island"></span><span>▱</span></div>
+        <header class="app-header"><div><h2 id="stats-title">Stats</h2><p>Monthly progress</p></div><button class="icon-button">⌗</button></header>
+        <div class="segmented"><button>Week</button><button class="active">Month</button><button>Year</button></div>
+        <section class="month-card"><div><span>Jan 2026</span><strong>4 entries</strong></div><div><span>Best change</span><strong>Belly -3 cm</strong></div></section>
+        <section class="change-grid"><div><span>Weight</span><strong>-1.2 kg</strong><small>60.0 → 58.8</small></div><div><span>Waist</span><strong>-2.5 cm</strong><small>69 → 66.5</small></div><div><span>Belly</span><strong>-3 cm</strong><small>72 → 69</small></div><div><span>Hips</span><strong>-0.5 cm</strong><small>92 → 91.5</small></div></section>
+        <section class="chart-card"><div class="chart-header"><strong>Waist trend</strong><span>-2.5 cm</span></div><svg viewBox="0 0 300 160"><path class="grid-line" d="M10 40H290M10 80H290M10 120H290"/><path class="line" d="M16 52 C70 58 90 82 130 84 S205 102 284 116"/><circle cx="16" cy="52" r="5"/><circle cx="130" cy="84" r="5"/><circle cx="284" cy="116" r="5"/></svg></section>
+        <section class="insight-card"><span>Insight</span><p>Your waist and belly changed more than weight this month.</p></section>
+        <nav class="dock"><button>⌂</button><button>♁</button><button class="add">＋</button><button class="active">♡</button><button>◎</button></nav>
+      </article>
+
+      <article class="phone" aria-labelledby="body-title">
+        <div class="status-bar"><span>18:41</span><span class="island"></span><span>▱</span></div>
+        <header class="app-header"><div><h2 id="body-title">Body Map</h2><p>Tap a point to edit</p></div><button class="icon-button">✎</button></header>
+        <section class="large-map"><div class="body-figure big"><span class="head"></span><span class="neck"></span><span class="torso"></span><span class="arm left-arm"></span><span class="arm right-arm"></span><span class="leg left-leg"></span><span class="leg right-leg"></span><i class="point p-neck"></i><i class="point p-bust"></i><i class="point p-waist"></i><i class="point p-hip"></i><i class="point p-thigh"></i><i class="point p-calf"></i></div></section>
+        <section class="measurement-list"><button><span>Neck</span><strong>31.5 cm</strong></button><button><span>Bust</span><strong>92 cm</strong></button><button><span>Waist</span><strong>69 cm</strong></button><button><span>Belly</span><strong>72 cm</strong></button><button><span>Hips</span><strong>92 cm</strong></button></section>
+        <nav class="dock"><button>⌂</button><button class="active">♁</button><button class="add">＋</button><button>♡</button><button>◎</button></nav>
+      </article>
+
+      <article class="phone" aria-labelledby="history-title">
+        <div class="status-bar"><span>18:41</span><span class="island"></span><span>▱</span></div>
+        <header class="app-header"><div><h2 id="history-title">History</h2><p>All measurement entries</p></div><button class="icon-button">⌕</button></header>
+        <section class="history-list"><button><span><b>24 Jan 2026</b><small>60.0 kg · waist 69 · belly 72</small></span><strong>›</strong></button><button><span><b>17 Jan 2026</b><small>60.4 kg · waist 70 · belly 72.5</small></span><strong>›</strong></button><button><span><b>10 Jan 2026</b><small>60.8 kg · waist 71 · belly 74</small></span><strong>›</strong></button><button><span><b>03 Jan 2026</b><small>61.2 kg · waist 71.5 · belly 75</small></span><strong>›</strong></button></section>
+        <section class="backup-card"><h3>Backup</h3><p>Export every entry, goal, reminder, and setting as one JSON file.</p><button>Export JSON</button></section>
+        <nav class="dock"><button>⌂</button><button>♁</button><button class="add">＋</button><button>♡</button><button class="active">◎</button></nav>
+      </article>
+
+      <article class="phone" aria-labelledby="profile-title">
+        <div class="status-bar"><span>18:41</span><span class="island"></span><span>▱</span></div>
+        <header class="app-header"><div><h2 id="profile-title">Profile</h2><p>Goals & app settings</p></div><button class="icon-button">✓</button></header>
+        <section class="profile-card"><div class="avatar">S</div><div><strong>Hourglass Goal</strong><span>Focus on balanced curves</span></div></section>
+        <section class="settings-list"><button><span>Goal weight</span><strong>55 kg</strong></button><button><span>Goal waist</span><strong>64 cm</strong></button><button><span>Reminder</span><strong>Every 7 days</strong></button><button><span>Units</span><strong>kg / cm</strong></button><button><span>Privacy lock</span><strong>Off</strong></button><button><span>Import backup</span><strong>JSON</strong></button></section>
+        <nav class="dock"><button>⌂</button><button>♁</button><button class="add">＋</button><button>♡</button><button class="active">◎</button></nav>
+      </article>
+    </section>
+  </main>
+</body>
+</html>
