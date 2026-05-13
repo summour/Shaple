@@ -13,91 +13,82 @@
 </head>
 <body>
   <main class="app-shell">
-    <section class="phone-screen" aria-label="Shaple home dashboard">
-      <header class="status-bar" aria-hidden="true">
-        <span>18:41</span>
-        <span class="dynamic-island"></span>
-        <span class="status-icons">⌁ ▱</span>
-      </header>
-
-      <section class="page-header">
+    <section class="screen" aria-label="Shaple home">
+      <header class="app-topbar">
         <div>
           <p class="eyebrow">Body Tracker</p>
           <h1>Shaple</h1>
           <p class="subtitle">Track your shape & progress</p>
         </div>
-        <button class="icon-button" type="button" aria-label="Open settings">⚙</button>
-      </section>
+        <button class="icon-button" data-open-settings type="button" aria-label="Open settings">⚙</button>
+      </header>
 
       <section class="summary-card" aria-label="Latest summary">
         <article>
-          <span class="summary-icon">⌁</span>
           <small>Current Weight</small>
-          <strong><span data-current-weight>60.0</span> kg</strong>
+          <strong><span data-current-weight>—</span> kg</strong>
         </article>
         <article>
-          <span class="summary-icon">↕</span>
           <small>Height</small>
-          <strong><span data-height>157</span> cm</strong>
+          <strong><span data-height>—</span> cm</strong>
         </article>
         <article>
-          <span class="summary-icon">◴</span>
           <small>Latest Entry</small>
-          <strong data-latest-date>24 Jan 2026</strong>
+          <strong data-latest-date>—</strong>
         </article>
       </section>
 
       <section class="section-heading">
-        <h2>Measurements Overview</h2>
-        <button class="pill-button" type="button">View History</button>
+        <h2>Measurements</h2>
+        <button class="pill-button" data-open-history type="button">History</button>
       </section>
 
       <section class="measurement-grid" aria-label="Measurement overview">
         <article class="measurement-card">
           <div class="card-icon green">⌁</div>
           <span>Waist</span>
-          <strong><span data-measurement="waist">69</span> cm</strong>
-          <small class="is-good" data-change="waist">-1.0 cm</small>
+          <strong><span data-measurement="waist">—</span> cm</strong>
+          <small data-change="waist">—</small>
         </article>
         <article class="measurement-card">
           <div class="card-icon orange">⌇</div>
           <span>Belly</span>
-          <strong><span data-measurement="belly">72</span> cm</strong>
-          <small class="is-good" data-change="belly">-0.5 cm</small>
+          <strong><span data-measurement="belly">—</span> cm</strong>
+          <small data-change="belly">—</small>
         </article>
         <article class="measurement-card">
           <div class="card-icon purple">♢</div>
           <span>Hips</span>
-          <strong><span data-measurement="hips">92</span> cm</strong>
-          <small data-change="hips">— 0 cm</small>
+          <strong><span data-measurement="hips">—</span> cm</strong>
+          <small data-change="hips">—</small>
         </article>
         <article class="measurement-card">
           <div class="card-icon blue">⌞</div>
           <span>Thigh</span>
-          <strong><span data-measurement="thigh">50</span> cm</strong>
-          <small class="is-good" data-change="thigh">-0.5 cm</small>
+          <strong><span data-measurement="thigh">—</span> cm</strong>
+          <small data-change="thigh">—</small>
         </article>
         <article class="measurement-card">
           <div class="card-icon teal">⌟</div>
           <span>Calf</span>
-          <strong><span data-measurement="calf">36</span> cm</strong>
-          <small data-change="calf">— 0 cm</small>
+          <strong><span data-measurement="calf">—</span> cm</strong>
+          <small data-change="calf">—</small>
         </article>
       </section>
 
       <section class="section-heading body-heading">
         <h2>Body Map</h2>
-        <button class="pill-button" type="button">Edit</button>
+        <button class="pill-button" data-open-entry type="button">Edit</button>
       </section>
 
       <section class="body-map-card" aria-label="Body map preview">
         <div class="body-labels left">
-          <p><b>Neck</b><span><span data-measurement="neck">31.5</span> cm</span></p>
-          <p><b>Bust</b><span><span data-measurement="bust">92</span> cm</span></p>
-          <p><b>Waist</b><span><span data-measurement="waist">69</span> cm</span></p>
-          <p><b>Hips</b><span><span data-measurement="hips">92</span> cm</span></p>
+          <p><b>Neck</b><span><span data-measurement="neck">—</span> cm</span></p>
+          <p><b>Bust</b><span><span data-measurement="bust">—</span> cm</span></p>
+          <p><b>Waist</b><span><span data-measurement="waist">—</span> cm</span></p>
+          <p><b>Hips</b><span><span data-measurement="hips">—</span> cm</span></p>
         </div>
-        <div class="body-figure" aria-hidden="true">
+        <button class="body-figure" data-open-entry type="button" aria-label="Edit measurements">
           <span class="head"></span>
           <span class="neck-line"></span>
           <span class="torso"></span>
@@ -111,11 +102,11 @@
           <i class="point point-hips"></i>
           <i class="point point-thigh"></i>
           <i class="point point-calf"></i>
-        </div>
+        </button>
         <div class="body-labels right">
-          <p><b>Belly</b><span><span data-measurement="belly">72</span> cm</span></p>
-          <p><b>Thigh</b><span><span data-measurement="thigh">50</span> cm</span></p>
-          <p><b>Calf</b><span><span data-measurement="calf">36</span> cm</span></p>
+          <p><b>Belly</b><span><span data-measurement="belly">—</span> cm</span></p>
+          <p><b>Thigh</b><span><span data-measurement="thigh">—</span> cm</span></p>
+          <p><b>Calf</b><span><span data-measurement="calf">—</span> cm</span></p>
         </div>
       </section>
 
@@ -124,28 +115,88 @@
           <div class="mini-icon green">◎</div>
           <div>
             <small>Goal</small>
-            <strong>Hourglass</strong>
+            <strong data-goal-label>Hourglass</strong>
             <span>Focus on balanced curves</span>
           </div>
         </article>
         <article class="mini-card">
           <div class="mini-icon blue">◴</div>
           <div>
-            <small>Reminder</small>
-            <strong>Next measurement</strong>
-            <span>in <b data-reminder-days>3 days</b></span>
+            <small>Entries</small>
+            <strong data-entry-count>0 records</strong>
+            <span data-last-change>Start tracking today</span>
           </div>
         </article>
       </section>
 
       <nav class="ios-dock" aria-label="Primary navigation">
         <button class="active" type="button" aria-label="Home">⌂</button>
-        <button type="button" aria-label="Body map">♁</button>
-        <button class="dock-add" type="button" aria-label="Add entry">＋</button>
-        <button type="button" aria-label="Stats">♡</button>
-        <button type="button" aria-label="Profile">◎</button>
+        <button data-open-entry type="button" aria-label="Body map">♁</button>
+        <button class="dock-add" data-open-entry type="button" aria-label="Add entry">＋</button>
+        <button data-open-history type="button" aria-label="History and stats">♡</button>
+        <button data-open-settings type="button" aria-label="Settings">◎</button>
       </nav>
     </section>
   </main>
+
+  <section class="sheet" data-entry-sheet hidden aria-label="Add measurement entry">
+    <div class="sheet-backdrop" data-close-sheet></div>
+    <form class="sheet-panel" data-entry-form>
+      <header class="sheet-header">
+        <button data-close-sheet type="button">Cancel</button>
+        <h2>New Entry</h2>
+        <button data-copy-last type="button">Copy last</button>
+      </header>
+
+      <div class="form-grid">
+        <label>Date <input name="date" type="date" required /></label>
+        <label>Height <input name="height" inputmode="decimal" type="number" step="0.1" /> cm</label>
+        <label>Weight <input name="weight" inputmode="decimal" type="number" step="0.1" required /> kg</label>
+        <label>Neck <input name="neck" inputmode="decimal" type="number" step="0.1" /> cm</label>
+        <label>Shoulder <input name="shoulder" inputmode="decimal" type="number" step="0.1" /> cm</label>
+        <label>Bust <input name="bust" inputmode="decimal" type="number" step="0.1" /> cm</label>
+        <label>Underbust <input name="underbust" inputmode="decimal" type="number" step="0.1" /> cm</label>
+        <label>Upper Arm <input name="upperArm" inputmode="decimal" type="number" step="0.1" /> cm</label>
+        <label>Waist <input name="waist" inputmode="decimal" type="number" step="0.1" /> cm</label>
+        <label>Belly <input name="belly" inputmode="decimal" type="number" step="0.1" /> cm</label>
+        <label>Upper Hip <input name="upperHip" inputmode="decimal" type="number" step="0.1" /> cm</label>
+        <label>Hips <input name="hips" inputmode="decimal" type="number" step="0.1" /> cm</label>
+        <label>Thigh <input name="thigh" inputmode="decimal" type="number" step="0.1" /> cm</label>
+        <label>Calf <input name="calf" inputmode="decimal" type="number" step="0.1" /> cm</label>
+      </div>
+
+      <label class="note-field">Note <textarea name="note" rows="3" placeholder="How do you feel today?"></textarea></label>
+      <button class="primary-button" type="submit">Save Entry</button>
+    </form>
+  </section>
+
+  <section class="sheet" data-history-sheet hidden aria-label="Measurement history">
+    <div class="sheet-backdrop" data-close-sheet></div>
+    <div class="sheet-panel">
+      <header class="sheet-header">
+        <button data-close-sheet type="button">Close</button>
+        <h2>History</h2>
+        <button data-export-json type="button">Export</button>
+      </header>
+      <div class="history-list" data-history-list></div>
+      <button class="danger-button" data-clear-data type="button">Clear all data</button>
+    </div>
+  </section>
+
+  <section class="sheet" data-settings-sheet hidden aria-label="Settings">
+    <div class="sheet-backdrop" data-close-sheet></div>
+    <form class="sheet-panel compact" data-settings-form>
+      <header class="sheet-header">
+        <button data-close-sheet type="button">Cancel</button>
+        <h2>Settings</h2>
+        <button type="submit">Save</button>
+      </header>
+      <div class="form-grid one-column">
+        <label>Goal label <input name="goalLabel" required /></label>
+        <label>Goal weight <input name="goalWeight" inputmode="decimal" type="number" step="0.1" /> kg</label>
+        <label>Goal waist <input name="goalWaist" inputmode="decimal" type="number" step="0.1" /> cm</label>
+      </div>
+    </form>
+  </section>
 </body>
 </html>
